@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Consultorio Libella</title>
+  <title>Gestion de Cobros</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -59,7 +59,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img class="mb-4" src="{% static 'logo_libella_.png' %}" class="img-circle elevation-2">  
+          <!--img class="mb-4" src="{% static 'logo_libella_.png' %}" class="img-circle elevation-2"-->  
         </div>
         {% if user.is_authenticated %}
           <div class="info">
@@ -75,48 +75,18 @@
                with font-awesome or any other icon font library -->
 
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-hand-holding-heart"></i>
-              <p>
-                Obras Sociales
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="/obrasociallistado/" class="nav-link">
-                  <i class="fas fa-search nav-icon"></i>
-                  <p>Buscar</p>
-                </a>
-              </li>              
-
-              <li class="nav-item">
-                <a href="/prestacionlistado/" class="nav-link">
-                  <i class="fas fa-list"></i>
-                  <p>Prestaciones</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="/nucleadorprestacionlistado/" class="nav-link">
-                  <i class="fas fa-warehouse"></i>
-                  <p>Prestaciones/Nucleadores</p>
-                </a>
-              </li>
-
-            </ul>
-
+            
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-user"></i>
                 <p>
-                  Pacientes
+                  Clientes
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="/pacientelistado/" class="nav-link">
+                  <a href="/clientelistado/" class="nav-link">
                     <i class="fas fa-search nav-icon"></i>
                     <p>Buscar</p>
                   </a>
@@ -361,7 +331,7 @@
 
 <script>
   $(document).ready(function () {
-    alert("SEGUN NUESTROS REGISTROS, HAY CUOTAS IMPAGAS, POR FAVOR CONTACTESE CON EL PROVEEDOR A FIN DE EVITAR SUSPESIÓN DEL SERVICIO.");
+    //alert("SEGUN NUESTROS REGISTROS, HAY CUOTAS IMPAGAS, POR FAVOR CONTACTESE CON EL PROVEEDOR A FIN DE EVITAR SUSPESIÓN DEL SERVICIO.");
   })
 </script>
 
