@@ -17,11 +17,12 @@ from django.contrib import admin
 from django.urls import path
 
 from .views import home
-from clientes.views import listadocliente
+from clientes.views import listadocliente, nuevocliente
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('listadocliente/', listadocliente, name='listadocliente'),
+    path('nuevocliente/', nuevocliente, name='nuevocliente'),
 ]

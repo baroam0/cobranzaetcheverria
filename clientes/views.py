@@ -1,17 +1,17 @@
 
 
+from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-
+from .forms import ClienteForm
 from .models import Cliente
 
 
 def listadocliente(request):
     if "txtBuscar" in request.GET:
         parametro = request.GET.get("txtBuscar")
-              
         consulta = Cliente.objects.filter(
             Q(apellido__icontains=parametro) |
             Q(nombre__contains=parametro)
@@ -27,38 +27,31 @@ def listadocliente(request):
         page = 1
     
     resultados = paginador.get_page(page)
-
     return render(request, 'clientes/cliente_list.html', {'resultados': resultados})
-
 
 
 def nuevocliente(request):
     if request.POST:
-        form = PacienteForm(request.POST)
-        existe = verifica_paciente(request.POST['numero_documento'])
-        if existe == True:
-            messages.success(request, "EL PACIENTE YA EXISTE EN LOS REGISTROS")
-            return redirect('/pacientelistado')
+        form = ClienteForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            consulta = Cliente.objects.latest('pk')
+            messages.success(
+                request,
+                "SE HAN GUARDADO LOS DATOS DEL CLIENTE " + str(consulta.apellido).upper() + ', ' + str(consulta.nombre).upper())
+            return redirect('/listadocliente/')
         else:
-            if form.is_valid():
-                form.save()
-                consulta = Paciente.objects.latest('pk')
-                messages.success(
-                    request,
-                    "SE HAN GUARDADO LOS DATOS DEL PACIENTE " + str(consulta.apellido).upper() + ', ' + str(consulta.nombre).upper())
-                return redirect('/pacienteeditar/' + str(consulta.pk))
-            else:
-                return render(
-                    request,
-                    'pacientes/paciente_nuevo.html',
-                    {
-                        "form": form,
-                    })
+            return render(
+                request,
+                'clietnes/cliente_nuevo.html',
+                {"form": form}
+            )
     else:
-        form = PacienteForm()
+        form = ClienteForm()
         return render(
             request,
-            'pacientes/paciente_nuevo.html',
+            'clientes/cliente_nuevo.html',
             {
                 "form": form,
             }
