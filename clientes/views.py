@@ -57,52 +57,30 @@ def nuevocliente(request):
             }
         )
 
-"""
 
-def editarpaciente(request, pk):
-    consulta = Paciente.objects.get(pk=pk)
-    anios = edad(consulta.fecha_nacimiento)
+def editarcliente(request, pk):
+    consulta = Cliente.objects.get(pk=pk)
+
     if request.POST:
-        form = PacienteForm(request.POST, instance=consulta)
+        form = ClienteForm(request.POST, instance=consulta)
         if form.is_valid():
             form.save()
-            messages.success(request, "SE HA MOFICICADO EL PACIENTE")
-            return redirect('/pacientelistado')
+            messages.success(request, "SE HA MOFICICADO EL CLIENTE")
+            return redirect('/listadocliente')
         else:
-            return render(request, "pacientes/paciente_edit.html", {"form": form})
+            return render(request, "clientes/clientes_edit.html", {"form": form})
     else:
-        form = PacienteForm(instance=consulta)
-        form_obrasocial = PacienteObraSocialForm()
-        tiene_obrasocial = verifica_obrasocial(consulta)
-        if tiene_obrasocial == False:
-            mensaje = "ESTE PACIENTE NO POSEE OBRA SOCIAL REGISTRADA"
-            return render(
-                request,
-                'pacientes/paciente_edit.html',
-                {
-                    "form": form,
-                    "form_obrasocial": form_obrasocial,
-                    "mensaje": mensaje,
-                    "anios": anios,
-                    "paciente": consulta.pk,
-                }
-            )
-        else:
-            paciente_obrassociales = PacienteObraSocial.objects.filter(
-                paciente = consulta
-            )
-            return render(
-                request,
-                'pacientes/paciente_edit.html',
-                {
-                    "form": form,
-                    "paciente_obrassociales": paciente_obrassociales,
-                    "form_obrasocial": form_obrasocial,
-                    "anios": anios
-                }
-            )
+        form = ClienteForm(instance=consulta)
 
+        return render(
+            request,
+            'clientes/cliente_nuevo.html',
+            {
+                "form": form,
+            }
+        )
 
+"""
 def ajax_obrasocial_paciente(request, pk):
     paciente  = Paciente.objects.get(pk=pk)
 
