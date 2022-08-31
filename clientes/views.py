@@ -1,5 +1,4 @@
 
-
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -7,6 +6,14 @@ from django.shortcuts import render, redirect
 
 from .forms import ClienteForm
 from .models import Cliente
+
+
+def controladni(dni,pk):
+    try:
+        consulta = Cliente.objects.filter(numerodocumento=dni).exclude(pk=pk)
+        return 1
+    except:
+        return 0    
 
 
 def listadocliente(request):
@@ -25,7 +32,7 @@ def listadocliente(request):
         page = request.GET.get('page')
     else:
         page = 1
-    
+
     resultados = paginador.get_page(page)
     return render(request, 'clientes/cliente_list.html', {'resultados': resultados})
 
@@ -33,6 +40,7 @@ def listadocliente(request):
 def nuevocliente(request):
     if request.POST:
         form = ClienteForm(request.POST)
+        print(form)
 
         if form.is_valid():
             form.save()
@@ -63,6 +71,8 @@ def editarcliente(request, pk):
 
     if request.POST:
         form = ClienteForm(request.POST, instance=consulta)
+        dni = form['numerodocumento'].value()
+
         if form.is_valid():
             form.save()
             messages.success(request, "SE HA MOFICICADO EL CLIENTE")
