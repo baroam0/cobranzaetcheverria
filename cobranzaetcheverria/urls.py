@@ -18,6 +18,7 @@ from django.urls import path
 
 from .views import home
 from clientes.views import listadocliente, nuevocliente, editarcliente
+from expedientes.views import listadoexpediente, nuevoexpediente
 
 
 urlpatterns = [
@@ -26,4 +27,6 @@ urlpatterns = [
     path('listadocliente/', listadocliente, name='listadocliente'),
     path('nuevocliente/', nuevocliente, name='nuevocliente'),
     path('editarcliente/<int:pk>', editarcliente, name='editarcliente'),
+    path('listadoexpediente/', listadoexpediente, name='listadoexpediente'),
+    path('nuevoexpediente/', nuevoexpediente, name='nuevoexpediente'),
 ]

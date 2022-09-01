@@ -4,27 +4,19 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, redirect
 
-from .forms import ClienteForm
-from .models import Cliente
+from .forms import ExpedienteForm
+from .models import Expediente
 
 
-def controladni(dni,pk):
-    try:
-        consulta = Cliente.objects.filter(numerodocumento=dni).exclude(pk=pk)
-        return 1
-    except:
-        return 0    
-
-
-def listadocliente(request):
+def listadoexpediente(request):
     if "txtBuscar" in request.GET:
         parametro = request.GET.get("txtBuscar")
-        consulta = Cliente.objects.filter(
-            Q(apellido__icontains=parametro) |
-            Q(nombre__contains=parametro)
-        ).order_by('apellido')
+        consulta = Expediente.objects.filter(
+            Q(expediente__icontains=parametro) |
+            Q(descripcion__contains=parametro)
+        ).order_by('expediente')
     else:
-        consulta = Cliente.objects.all().order_by('apellido')
+        consulta = Expediente.objects.all().order_by('expediente')
 
     paginador = Paginator(consulta, 20)
 
@@ -34,39 +26,37 @@ def listadocliente(request):
         page = 1
 
     resultados = paginador.get_page(page)
-    return render(request, 'clientes/cliente_list.html', {'resultados': resultados})
+    return render(request, 'expedientes/expediente_list.html', {'resultados': resultados})
 
 
-def nuevocliente(request):
+def nuevoexpediente(request):
     if request.POST:
-        form = ClienteForm(request.POST)
-        print(form)
+        form = ExpedienteForm(request.POST)
 
         if form.is_valid():
             form.save()
-            consulta = Cliente.objects.latest('pk')
             messages.success(
                 request,
-                "SE HAN GUARDADO LOS DATOS DEL CLIENTE " + str(consulta.apellido).upper() + ', ' + str(consulta.nombre).upper())
-            return redirect('/listadocliente/')
+                "SE HAN GUARDADO LOS DATOS DEL EXPEDIENTE ")
+            return redirect('/listadoexpediente/')
         else:
             return render(
                 request,
-                'clietnes/cliente_nuevo.html',
+                'expedientes/expediente_nuevo.html',
                 {"form": form}
             )
     else:
-        form = ClienteForm()
+        form = ExpedienteForm()
         return render(
             request,
-            'clientes/cliente_nuevo.html',
+            'expedientes/expediente_nuevo.html',
             {
                 "form": form,
             }
         )
 
-
-def editarcliente(request, pk):
+"""
+def editarexpediente(request, pk):
     consulta = Cliente.objects.get(pk=pk)
 
     if request.POST:
@@ -88,5 +78,6 @@ def editarcliente(request, pk):
                 "form": form,
             }
         )
+"""
 
 # Create your views here.

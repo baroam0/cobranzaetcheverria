@@ -94,37 +94,24 @@
               </ul>
             </li>
 
-            <!--li class="nav-item has-treeview">
+            <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-user-md"></i>
+                <i class="nav-icon fas fa-book"></i>
                 <p>
-                  Profesionales
+                  Expedientes
                   <i class="fas fa-angle-left right"></i>
                 </p>
               </a>
 
-              {% if request.user.is_staff %}
-
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="/profesionallistado/" class="nav-link">
-                    <i class="fas fa-id-card nav-icon"></i>
-                    <p>Datos Profesional</p>
+                  <a href="/listadoexpediente/" class="nav-link">
+                    <i class="fas fa-search nav-icon"></i>
+                    <p>Buscar</p>
                   </a>
                 </li>
               </ul>
-
-              {% endif %}
-
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="/datosbancarioslistado/" class="nav-link">
-                    <i class="fas fa-money-check-alt nav-icon"></i>
-                    <p>Datos Bancarios</p>
-                  </a>
-                </li>
-              </ul>
-            </li-->
+            </li>
 
 
             <!--li class="nav-item has-treeview">
@@ -249,18 +236,7 @@
   </div>
 
   <footer class="main-footer">
-
-    {% if cumplepaciente %}
-      {%for dato in cumplepaciente %}
-        
-            <div class="alert alert-secondary" role="alert">
-                Hoy es el cumple de {{dato.apellido.upper}}, {{dato.nombre.upper}} - {{dato.telefono}}
-            </div>
-        
-      {% endfor %}
-    {% endif %}
-
-    <strong>Copyright &copy; 2021 </strong>
+    <strong>Copyright &copy; 2022 </strong>
     Todos los Derechos Reservados.
     <div class="float-right d-none d-sm-inline-block">
       <b>Version</b> 1.0.0
