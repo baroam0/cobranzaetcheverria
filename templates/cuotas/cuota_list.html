@@ -26,27 +26,30 @@
         
         <br>
 
-        <table class="table table-hover" id="tablaDatos">
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Descripcion</th>
-                    <th>Monto</th>
-                    
-                </tr>
-            </thead>
+        {% if resultado %}
 
-            <tbody>
-                {% for resultado in resultados %}
-                <tr>
-                    <td>{{resultado.fecha}}</td>
-                    <td>{{resultado.descripcion}}</td>
-                    <td>{{resultado.importe}}</td>
-                    
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+            <table class="table table-hover" id="tablaDatos">
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Descripcion</th>
+                        <th>Monto</th>
+                        
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for resultado in resultados %}
+                    <tr>
+                        <td>{{resultado.fecha}}</td>
+                        <td>{{resultado.descripcion}}</td>
+                        <td>{{resultado.importe}}</td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
 
         <table class="table table-hover" id="tablaDatos">
             <thead>
