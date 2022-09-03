@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="col-2">    
-                            <button type="button" class="btn btn-danger" id="btn-cancelar" onclick="IrListadoCliente()">
+                            <button type="button" class="btn btn-danger" id="btn-cancelar" onclick="IrListadoExpediente()">
                                 <i class="far fa-times-circle"></i>
                                 Cancelar
                             </button>
@@ -191,31 +191,6 @@
             });
 
 
-            $('#modal-select-obra-social').select2({
-                language: {
-                    inputTooShort: function() {
-                        return 'Por favor ingrese 2 caracteres';
-                    },
-                    noResults: function() {
-                        return "No se encontraron resultados";
-                    },
-                },
-                minimumInputLength: 2,
-                ajax: {
-                    url: '/ajaxobrasocial/',
-                    processResults: function (data) {
-                        return {
-                            results: $.map(data, function (item) {
-                                return {
-                                    text: item.text,
-                                    id: item.id
-                                }
-                            })
-                        };
-                    }
-                }
-            });
-
         });
 
         function EditarPacienteObraSocial(){
@@ -309,8 +284,8 @@
             editar = false; 
         }
 
-        function IrListadoCliente() {
-            window.location.replace("/listadocliente");
+        function IrListadoExpediente() {
+            window.location.replace("/listadoexpediente");
         }
 
         function LimpiarFormularioModal(){

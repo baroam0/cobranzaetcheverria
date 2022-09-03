@@ -13,7 +13,8 @@ def listadoexpediente(request):
         parametro = request.GET.get("txtBuscar")
         consulta = Expediente.objects.filter(
             Q(expediente__icontains=parametro) |
-            Q(descripcion__contains=parametro)
+            Q(cliente__apellido__icontains=parametro) |
+            Q(cliente__nombre__icontains=parametro)
         ).order_by('expediente')
     else:
         consulta = Expediente.objects.all().order_by('expediente')
@@ -55,29 +56,29 @@ def nuevoexpediente(request):
             }
         )
 
-"""
+
 def editarexpediente(request, pk):
-    consulta = Cliente.objects.get(pk=pk)
+    consulta = Expediente.objects.get(pk=pk)
 
     if request.POST:
-        form = ClienteForm(request.POST, instance=consulta)
+        form = ExpedienteForm(request.POST, instance=consulta)
 
         if form.is_valid():
             form.save()
-            messages.success(request, "SE HA MOFICICADO EL CLIENTE")
-            return redirect('/listadocliente')
+            messages.success(request, "SE HA MOFICICADO EL EXPEDIENTE")
+            return redirect('/listadoexpediente')
         else:
-            return render(request, "clientes/clientes_edit.html", {"form": form})
+            return render(request, "expedientes/expedientes_nuevo.html", {"form": form})
     else:
-        form = ClienteForm(instance=consulta)
+        form = ExpedienteForm(instance=consulta)
 
         return render(
             request,
-            'clientes/cliente_nuevo.html',
+            'expedientes/expediente_nuevo.html',
             {
                 "form": form,
             }
         )
-"""
+
 
 # Create your views here.

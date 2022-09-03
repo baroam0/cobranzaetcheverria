@@ -1,6 +1,7 @@
 
 from django import forms
-from .models import Cliente
+from clientes.models import Cliente
+from .models import Expediente
 
 
 class ExpedienteForm(forms.ModelForm):    
@@ -18,6 +19,6 @@ class ExpedienteForm(forms.ModelForm):
             })
 
     class Meta:
-        model = Cliente
+        model = Expediente
         fields = ['expediente', 'descripcion', 'cliente',
             'monto']

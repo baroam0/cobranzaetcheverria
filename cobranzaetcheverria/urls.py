@@ -18,7 +18,8 @@ from django.urls import path
 
 from .views import home
 from clientes.views import listadocliente, nuevocliente, editarcliente
-from expedientes.views import listadoexpediente, nuevoexpediente
+from expedientes.views import listadoexpediente, nuevoexpediente, editarexpediente
+from cuotas.views import listadocuota, nuevocuota
 
 
 urlpatterns = [
@@ -29,4 +30,8 @@ urlpatterns = [
     path('editarcliente/<int:pk>', editarcliente, name='editarcliente'),
     path('listadoexpediente/', listadoexpediente, name='listadoexpediente'),
     path('nuevoexpediente/', nuevoexpediente, name='nuevoexpediente'),
+    path('editarexpediente/<int:pk>', editarexpediente, name='editarexpediente'),
+    path('listadocuota/<int:pk>', listadocuota, name='listadocliente'),
+    path('nuevocuota/', nuevocuota, name='nuevocuota'),
+
 ]

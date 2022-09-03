@@ -64,9 +64,8 @@
                         <th>Apellido</th>
                         <th>Nombre</th>
                         <th>Descripcion</th>
-                        <th>Monto</th>
-                        <th>Domicilio</th>
-                        <th>Accion</th>
+                        <th>Editar</th>
+                        <th>Cuotas</th>
                     </tr>
                 </thead>
 
@@ -77,11 +76,15 @@
                         <td>{{resultado.cliente.apellido }}</td>
                         <td>{{resultado.cliente.nombre }}</td>
                         <td>{{resultado.descripcion}}</td>
-                        <td>{{resultado.monto}}</td>
-                        <td>{{resultado.domicilio}}</td>
+                        
                         <td>
-                            <button type="button" class="btn btn-link btn-sm" onclick="location.href='/editarcliente/' + {{ resultado.pk }}">
+                            <button type="button" class="btn btn-link btn-sm" onclick="location.href='/editarexpediente/' + {{ resultado.pk }}">
                                 <i class="fas fa-pencil-alt"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-link btn-sm" onclick="location.href='/listadocuota/' + {{ resultado.pk }}">
+                                <i class="fas fa-money-bill-wave"></i>
                             </button>
                         </td>
                     </tr>
