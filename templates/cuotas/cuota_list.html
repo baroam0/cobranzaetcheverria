@@ -133,62 +133,12 @@
                 $('#selectProfesional').val(selectProfesional);
             }
         });
-        
 
-        function ReporteListado(){
-            var origin   = window.location.origin;
-            var url = window.location.href;
-            var hash = url.substring(url.indexOf('?')+1);
-
-            if(url==hash){
-                var destino = origin + "/reportelistado/" 
-                window.open(destino);
-            }else{   
-                var destino = origin + "/reportelistado/?"  + hash;
-                window.open(destino); 
-            }
+        function IrListadoExpediente() {
+            window.location.replace("/listadoexpediente");
         }
 
 
-        function exportTableToExcel(filename = ''){
-            //var tableID = document.getElementById("tablaDatos");
-            
-            var downloadLink;
-            var dataType = 'application/vnd.ms-excel';
-            var tableSelect = document.getElementById("tablaDatos");
-            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-    
-            // Specify file name
-            filename = filename?filename+'.xls':'excel_data.xls';
-    
-            // Create download link element
-            downloadLink = document.createElement("a");
-    
-            document.body.appendChild(downloadLink);
-    
-            if(navigator.msSaveOrOpenBlob){
-                var blob = new Blob(['ufeff', tableHTML], {
-                    type: dataType
-                });
-                navigator.msSaveOrOpenBlob( blob, filename);
-            }else{
-                // Create a link to the file
-                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-    
-                // Setting the file name
-                downloadLink.download = filename;
-        
-                //triggering the function
-                downloadLink.click();
-            }
-        }
-
-        function ObtenerParametroURL(){
-            var queryString = window.location.search;
-            var urlParams = new URLSearchParams(queryString);
-            var parametroprofesional = urlParams.get('selectProfesional');
-            return parametroprofesional;
-        }
 
     </script>
 
