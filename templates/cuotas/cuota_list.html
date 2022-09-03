@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-sm-10">
-                <h3> Cuotas - {{expediente}} - {{expediente.cliente.apellido.upper}}, {{expediente.cliente.nombre.upper}}  </h3>
+                <h3> Cuotas - {{expediente.cliente.apellido.upper}}, {{expediente.cliente.nombre.upper}}  </h3>
             </div>
             <div class="col-sm-1"></div>
         </div>
@@ -51,19 +51,20 @@
             </table>
         {% endif %}
 
-        <table class="table table-hover" id="tablaDatos">
+
+        <table class="table table-hover" id="tablaTotales">
             <thead>
                 <tr>
-                    <th>Total Expediente </th>
-                    <th>Total Cuotas </th>
+                    <th>Total</th>
+                    <th>Cuotas</th>
                     <th>Saldo</th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr>
-                    <td>{{expediente.monto }}</td>
-                    <td>{{importecuotas }}</td>
+                    <td>{{expediente.monto}}</td>
+                    <td>{{importecuotas}}</td>
                     <td bgcolor="orange">{{saldo}}</td>
                 </tr>
             </tbody>

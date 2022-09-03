@@ -37,9 +37,6 @@ def nuevocuota(request):
     if request.POST:
         form = CuotaForm(request.POST)
 
-        print("**********************")
-        print(form['expediente'].value())
-
         if form.is_valid():
             form.save()
             messages.success(
