@@ -18,7 +18,7 @@
         <hr>
 
 
-        <form action="/listadoexpediente" method="GET">
+        <form action="/reporte" method="GET">
             <div class="form-inline">
                 <div class="col-8">
                     <select name="txtMes" class="form-control" required="" id="id_txtMes">
@@ -40,7 +40,7 @@
                         <option value="2022">2022</option>
                     </select>
 
-                    <button type="button" class="btn btn-default" title="Nuevo Cliente!" onclick="location.href='/nuevocliente'">
+                    <button type="submit" class="btn btn-default" title="Nuevo Cliente!" >
                         <i class="fas fa-receipt"></i>
                     </button>
                 </div>
@@ -69,21 +69,10 @@
                 <tbody>
                     {% for resultado in resultados %}
                     <tr>
-                        <td>{{resultado.expediente }}</td>
-                        <td>{{resultado.cliente.apellido }}</td>
-                        <td>{{resultado.cliente.nombre }}</td>
-                        <td>{{resultado.descripcion}}</td>
-                        
-                        <td>
-                            <button type="button" class="btn btn-link btn-sm" onclick="location.href='/editarexpediente/' + {{ resultado.pk }}">
-                                <i class="fas fa-pencil-alt"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-link btn-sm" onclick="location.href='/listadocuota/' + {{ resultado.pk }}">
-                                <i class="fas fa-money-bill-wave"></i>
-                            </button>
-                        </td>
+                        <td>{{resultado.expediente.cliente.apellido }}</td>
+                        <td>{{resultado.expediente.cliente.nombre }}</td>
+                        <td>{{resultado.importe }}</td>
+                        <td>{{resultado.importecomision }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
