@@ -19,7 +19,7 @@ from django.urls import path
 from .views import home
 from clientes.views import listadocliente, nuevocliente, editarcliente
 from expedientes.views import listadoexpediente, nuevoexpediente, editarexpediente
-from cuotas.views import listadocuota, nuevocuota
+from cuotas.views import listadocuota, nuevocuota, reporte
 
 
 urlpatterns = [
@@ -33,5 +33,5 @@ urlpatterns = [
     path('editarexpediente/<int:pk>', editarexpediente, name='editarexpediente'),
     path('listadocuota/<int:pk>', listadocuota, name='listadocliente'),
     path('nuevocuota/', nuevocuota, name='nuevocuota'),
-
+    path('reporte/', reporte, name='reporte'),
 ]

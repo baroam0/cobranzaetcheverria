@@ -63,7 +63,7 @@
         </div>
         {% if user.is_authenticated %}
           <div class="info">
-            <a class="nav-link" href="/perfil" tabindex="-1" aria-disabled="true">{{ user.get_username }}</a>
+            <!--a class="nav-link" href="/perfil" tabindex="-1" aria-disabled="true">{{ user.get_username }}</a-->
           </div>
         {% endif %}
       </div>
@@ -110,28 +110,19 @@
                     <p>Buscar</p>
                   </a>
                 </li>
+
               </ul>
             </li>
 
 
-            <!--li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-calendar-alt"></i>
+            <li class="nav-item has-treeview">
+              <a href="/reporte/" class="nav-link">
+                <i class="fas fa-chart-line"></i>
                 <p>
-                  Turnos
-                  <i class="fas fa-angle-left right"></i>
+                  Reporte
                 </p>
               </a>
-
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="/turnolistado/" class="nav-link">
-                    <i class="fas fa-calendar-check nav-icon"></i>
-                    <p>Listado de Turnos</p>
-                  </a>
-                </li>
-              </ul>
-            </li-->
+            </li>
 
             <!--li class="nav-item has-treeview">
               <a href="#" class="nav-link">
@@ -217,7 +208,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <a class="breadcrumb-item" href="/salir">Salir</a>
+              <!--a class="breadcrumb-item" href="/salir">Salir</a-->
             </ol>
           </div>
         </div>

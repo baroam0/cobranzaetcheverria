@@ -15,10 +15,15 @@ def listadocuota(request, pk):
     importecuotas = 0
     for i in cuotas:
         importecuotas = importecuotas + i.importe
+    
+    importecuotascomision = 0
+    for i in cuotas:
+        if i.importecomision:
+            importecuotascomision = importecuotascomision + i.importecomision
 
     form = CuotaForm()
 
-    saldo = expediente.monto - importecuotas
+    saldo = expediente.monto - importecuotas - importecuotascomision
 
     return render(
         request, 
@@ -27,6 +32,7 @@ def listadocuota(request, pk):
             'form': form,
             'expediente' : expediente,
             'importecuotas' : importecuotas,
+            'importecuotascomision' : importecuotascomision,
             'resultados': cuotas,
             'saldo': saldo
         }
@@ -60,5 +66,23 @@ def nuevocuota(request):
             }
         )
     """
+
+
+def reporte(request):
+    
+    if "txtMes" in request.GET and "txtAnio" in request.GET:
+        parametromes = request.GET.get("txtMes")
+        parametroanio = request.GET.get("txtAnio")
+
+        resultados = Cuota.objects.filter(
+            fecha__year__gte=parametroanio,
+            fecha__month__gte=parametromes,
+            fecha__year__lte=parametroanio,
+            fecha__month__lte=parametromes
+        )
+        return render(request, 'cuotas/reporte.html', {'resultados': resultados})
+    else:
+        return render(request, 'cuotas/reporte.html')
+    
 
 # Create your views here.
