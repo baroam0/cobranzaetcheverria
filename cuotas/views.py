@@ -80,7 +80,41 @@ def reporte(request):
             fecha__year__lte=parametroanio,
             fecha__month__lte=parametromes
         )
-        return render(request, 'cuotas/reporte.html', {'resultados': resultados})
+        
+        dictmes = {
+            "1" : "Enero",
+            "2" : "Febrero",
+            "3" : "Marzo",
+            "4" : "Abril",
+            "5" : "Mayo",
+            "6" : "Junio",
+            "7" : "Julio",
+            "8" : "Agosto",
+            "9" : "Septiembre",
+            "10" : "Octubre",
+            "11" : "Noviembre",
+            "12" : "Diciembre"
+        }
+        
+        total = 0
+        for resultado in resultados:
+            total = total + resultado.importe
+        
+        totalcomision = 0
+        for resultado in resultados:
+            if resultado.importecomision:
+                totalcomision = totalcomision + resultado.importecomision
+            else:
+                totalcomision = totalcomision + 0
+
+        return render(request, 'cuotas/reporte.html', {
+            'resultados': resultados,
+            'mes': dictmes[parametromes],
+            'mesnro': parametromes,
+            'anio': parametroanio,
+            'total': total,
+            'totalcomision': totalcomision
+        })
     else:
         return render(request, 'cuotas/reporte.html')
     

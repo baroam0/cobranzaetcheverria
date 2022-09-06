@@ -149,47 +149,13 @@
 
         $(document).ready(function () {
 
-            $('#modal-obrasocial').on('shown.bs.modal', function (e) {
-                LimpiarFormularioModal();
-            })
-
-            $('#modal-obrasocial').on('hidden.bs.modal', function (e) {
-                window.location.reload()
-            })
-           
-            $('#id_profesional_tratante').select2({
+            $('#id_cliente').select2({
                 language: {
                     noResults: function() {
                         return "No se encontraron resultados";
                     },
                 }
             });
-
-            $('#id_diagnostico').select2({
-                language: {
-                    inputTooShort: function() {
-                        return 'Por favor ingrese 2 caracteres';
-                    },
-                    noResults: function() {
-                        return "No se encontraron resultados";
-                    },
-                },
-                minimumInputLength: 2,
-                ajax: {
-                    url: '/ajaxcatalogo/',
-                    processResults: function (data) {
-                        return {
-                            results: $.map(data, function (item) {
-                                return {
-                                    text: item.text,
-                                    id: item.id
-                                }
-                            })
-                        };
-                    }
-                }
-            });
-
 
         });
 
