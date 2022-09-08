@@ -73,9 +73,9 @@
                     {% for resultado in resultados %}
                     <tr>
                         <td>{{resultado.expediente }}</td>
-                        <td>{{resultado.cliente.apellido }}</td>
-                        <td>{{resultado.cliente.nombre }}</td>
-                        <td>{{resultado.descripcion}}</td>
+                        <td>{{resultado.cliente.apellido.upper }}</td>
+                        <td>{{resultado.cliente.nombre.upper}}</td>
+                        <td>{{resultado.descripcion.upper}}</td>
                         
                         <td>
                             <button type="button" class="btn btn-link btn-sm" onclick="location.href='/editarexpediente/' + {{ resultado.pk }}">
