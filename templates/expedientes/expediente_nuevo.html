@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
-                <h3>Datos del Cliente</h3>
+                <h3>Datos del Expediente</h3>
             </div>
 
             <div class="col-sm-4"></div>
@@ -63,73 +63,7 @@
                         </div>
                     </div>
                     <hr>
-                </form>
-
-
-                <div class="modal fade" id="modal-obrasocial">
-                    <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h4 class="modal-title">Obras Sociales</h4>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-
-                            <form id="form-pacienteobrasocial">
-                                {{form_obrasocial.as_p}}
-                            </form>
-
-                            <table class="table table-hover" id="tabla-pacienteobrasocial">
-                                <thead>
-                                    <tr>
-                                        <th>Codigo</th>
-                                        <th>Obra Social</th>
-                                        <th>Numero de Afiliado</th>
-                                        <th>Observacion</th>
-                                        <th>Accion</th>
-                                    </tr>
-                                </thead>
-                
-                                <tbody>
-                                    {% if paciente_obrassociales %}
-                                        {% for obrasocial in paciente_obrassociales %}
-                                            <tr id="{{obrasocial.obrasocial.pk}}">
-                                                <td>{{obrasocial.pk}}</td>
-                                                <td>{{obrasocial.obrasocial.descripcion.upper}}</td>
-                                                <td>{{obrasocial.numeroafiliado}}</td>
-                                                <td>{{obrasocial.observaciones}}</td>
-                    
-                                                <td>
-                                                    <button type="button" class="btn btn-link btn-sm btnSelect" onclick="javascript:LeerFilaTablaModal()">
-                                                        <i class="fas fa-pencil-alt"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        {% endfor %}
-                                    {% endif %}
-                                </tbody>
-                            </table>
-
-                        </div>
-                        <div class="modal-footer justify-content-between">
-                            
-                            <button type="button" class="btn btn-default" data-dismiss="modal">
-                                <i class="fas fa-times-circle"></i>
-                                Cerrar
-                            </button>
-                            
-                            <button type="button" class="btn btn-primary" onclick="javascrit:GrabarPacienteObraSocial()">
-                                <i class="fas fa-save"></i> 
-                                Guardar
-                            </button>
-                        </div>
-                      </div>
-                      <!-- /.modal-content -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>        
+                </form>      
 
             </div>
         </div>
