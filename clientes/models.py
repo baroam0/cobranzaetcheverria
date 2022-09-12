@@ -11,8 +11,8 @@ class Cliente(models.Model):
     profesion = models.CharField(max_length=250, null=True, blank=True) 
 
     def __str__(self):
-        return self.apellido.upper + ', ' + self.nombre.upper
-        #return str(self.apellido)
+        #return self.apellido.upper + ', ' + self.nombre.upper
+        return str(self.apellido)
 
     class Meta:
         verbose_name_plural = "Clientes"
