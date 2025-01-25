@@ -7,6 +7,7 @@ clientes = archivo.readlines()
 
 print("Grabando...")
 
+
 for cliente in clientes:
     if cliente != "":
         grabar = Cliente(apellido=str(cliente), nombre=" ")
