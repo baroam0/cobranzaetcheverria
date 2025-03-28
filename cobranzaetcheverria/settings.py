@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-$9_9mll=r+y=fq*m&@a2g30x$4jmymc8i!f#^m)or#=s2@=vd-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cobranzaetcheverria.pythonanywhere.com']
+#ALLOWED_HOSTS = ['cobranzaetcheverria.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Application definition
@@ -37,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'clientes',
+    'cuotas',
+    'expedientes'
 ]
 
 MIDDLEWARE = [
@@ -76,7 +80,7 @@ WSGI_APPLICATION = 'cobranzaetcheverria.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),
     }
 }
 

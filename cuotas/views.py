@@ -55,17 +55,54 @@ def nuevocuota(request):
                 'cuotas/cuota_list.html',
                 {"form": form}
             )
-    """
+
+
+def editarcuota(request, pk):
+    cuota = Cuota.objects.get(pk=pk)
+    expediente = Expediente.objects.get(pk=cuota.expediente.pk)
+    cuotas = Cuota.objects.filter(expediente=expediente.pk)
+
+    importecuotas = 0
+    for i in cuotas:
+        importecuotas = importecuotas + i.importe
+    
+    importecuotascomision = 0
+    for i in cuotas:
+        if i.importecomision:
+            importecuotascomision = importecuotascomision + i.importecomision
+
+    saldo = expediente.monto - importecuotas - importecuotascomision
+
+    if request.POST:
+        form = CuotaForm(request.POST, instance=cuota)
+
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request,
+                "SE HAN GUARDADO LOS DATOS")
+            return redirect('/listadocuota/' + str(form['expediente'].value()))
+        else:
+            messages.success(
+                request,
+                "SE HA DETECTADO UN ERROR")
+            return redirect('/editarcuota/' + str(cuota.pk))
     else:
-        form = CuotaForm()
+        form = CuotaForm(instance=cuota)
+
         return render(
             request,
-            'cuotas/cuota_nuevo.html',
+            'cuotas/cuota_list.html',
             {
-                "form": form,
+                'form': form,
+                'expediente': expediente,
+                'importecuotas' : importecuotas,
+                'importecuotascomision' : importecuotascomision,
+                'resultados': cuotas,
+                'saldo': saldo
             }
         )
-    """
+
 
 
 def reporte(request):

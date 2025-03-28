@@ -9,7 +9,7 @@ class CuotaForm(forms.ModelForm):
     fecha = forms.DateField(label="Fecha", required=True)
 
     expediente = forms.ModelChoiceField(
-        queryset=Expediente.objects.all(), 
+        queryset=Expediente.objects.all().order_by("expediente"), 
         label="Expediente", 
         required=True
     )

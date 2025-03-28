@@ -35,7 +35,7 @@
                         <th>Descripcion</th>
                         <th>Importe</th>
                         <th>Importe Comision</th>
-                        
+                        <th>Editar</th>
                     </tr>
                 </thead>
 
@@ -50,6 +50,11 @@
                         {%else%}
                             <td></td>
                         {%endif%}
+                        <td>
+                            <button type="button" class="btn btn-link btn-sm" onclick="location.href='/editarcuota/' + {{ resultado.pk }}">
+                            <i class="fas fa-pencil-alt"></i>
+                            </button>
+                        </td>
                         
                         
                     </tr>
@@ -82,7 +87,7 @@
 
         <form id="frm_datos" action="/nuevocuota/" method="POST">{% csrf_token %}
 
-            <p>
+            <!--p>
                 <label for="id_fecha">Fecha:</label> 
                 {{ form.fecha }}
             </p>
@@ -107,7 +112,9 @@
             <p>
                 <label for="id_importecomision">Importe Comision:</label> 
                 {{ form.importecomision }}    
-            </p>
+            </p-->
+
+            {{form.as_p}}
 
 
             <hr>
